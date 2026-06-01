@@ -1,378 +1,481 @@
 /* ========================================
-   全局重置
+   Apple 设计风格 — C端移动端
    ======================================== */
+
+/* SF Pro 系统字体栈 */
+:root {
+  --ios-blue: #007AFF;
+  --ios-green: #34C759;
+  --ios-orange: #FF9500;
+  --ios-red: #FF3B30;
+  --ios-gray: #8E8E93;
+  --ios-light-bg: #F2F2F7;
+  --ios-card-bg: #FFFFFF;
+  --ios-separator: #C6C6C8;
+  --ios-secondary-label: #3A3A3C;
+  --ios-tertiary-label: #8E8E93;
+  --ios-quaternary-label: #C6C6C8;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--ios-light-bg);
+  color: #000;
 }
 
-/* ========================================
-   C端 — 移动端风格 (mobile-app)
-   ======================================== */
+/* ── 容器 ── */
 .mobile-app {
-  max-width: 100%;
   min-height: 100vh;
-  background: #f5f5f5;
-  color: #1a1a1a;
+  background: var(--ios-light-bg);
+  padding-bottom: 100px;
 }
 
-/* 顶栏 */
-.mobile-header {
-  background: linear-gradient(135deg, #4f8cff, #6366f1);
-  color: white;
-  padding: 16px 16px 12px;
+/* ── 导航栏 (iOS 大标题风格) ── */
+.ios-nav {
+  background: rgba(242,242,247,0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   position: sticky;
   top: 0;
   z-index: 100;
+  padding: 0 16px;
+  border-bottom: 0.5px solid var(--ios-separator);
 }
-.mobile-header-top {
+
+.ios-nav-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.ios-nav-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.mobile-header-top h1 {
-  font-size: 20px;
-  font-weight: 600;
-}
-.mobile-header-top .btn {
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: all 0.2s;
-}
-.mobile-header-top .btn:hover {
-  background: rgba(255,255,255,0.3);
-}
-
-/* 统计条 */
-.mobile-stats {
-  display: flex;
-  gap: 20px;
-  font-size: 13px;
-  opacity: 0.9;
-}
-.mobile-stats strong {
-  font-size: 16px;
-  display: inline;
-  margin-left: 4px;
-}
-.mobile-stats .orange strong { color: #fbbf24; }
-.mobile-stats .green strong { color: #6ee7b7; }
-
-/* 主内容 */
-.mobile-main {
-  padding: 12px 12px 80px;
-}
-
-/* 加载 & 空状态 */
-.mobile-loading {
-  text-align: center;
-  padding: 60px 0;
-  color: #999;
-  font-size: 14px;
-}
-.mobile-empty {
-  text-align: center;
-  padding: 80px 0;
-  color: #999;
-}
-.mobile-empty .empty-icon { font-size: 48px; margin-bottom: 12px; }
-.mobile-empty p { font-size: 15px; margin-bottom: 4px; }
-.mobile-empty .empty-sub { font-size: 13px; color: #bbb; }
-
-/* 卡片列表 */
-.mobile-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.mobile-card {
-  background: white;
-  border-radius: 12px;
-  padding: 14px 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-  border-left: 4px solid transparent;
-}
-.pending-card { border-left-color: #f59e0b; }
-.resolved-card { border-left-color: #10b981; }
-.mobile-card-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.mobile-card-head h3 {
-  font-size: 15px;
-  font-weight: 600;
-  flex: 1;
-  margin-right: 8px;
-}
-.mobile-card-body {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 6px;
-}
-.mobile-card-time {
-  font-size: 12px;
-  color: #bbb;
-}
-
-/* C端弹窗 (全屏) */
-.mobile-app .overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
   align-items: flex-end;
-  z-index: 200;
-}
-.mobile-app .form {
-  background: white;
-  width: 100%;
-  border-radius: 16px 16px 0 0;
-  padding: 20px 20px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  animation: slideUp 0.25s ease-out;
-}
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-.mobile-app .form h2 {
-  font-size: 17px;
-  font-weight: 600;
-  text-align: center;
-}
-.mobile-app .form input,
-.mobile-app .form textarea {
-  padding: 12px 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  font-size: 15px;
-  outline: none;
-  font-family: inherit;
-  background: #f9fafb;
-  transition: border 0.2s;
-}
-.mobile-app .form input:focus,
-.mobile-app .form textarea:focus {
-  border-color: #4f8cff;
-  background: white;
-}
-.mobile-app .form-actions {
-  display: flex;
-  gap: 10px;
-}
-.mobile-app .form-actions .btn {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  background: #4f8cff;
-  color: white;
-}
-.mobile-app .form-actions .btn-cancel {
-  background: #f3f4f6;
-  color: #666;
+  padding: 52px 0 4px;
 }
 
-/* C端徽章 */
-.mobile-app .badge {
-  font-size: 11px;
-  padding: 2px 10px;
-  border-radius: 20px;
+.ios-nav-top h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #000;
+  line-height: 1.1;
+}
+
+.ios-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 4px;
+}
+
+/* ── 统计小标签 ── */
+.ios-stats {
+  display: flex;
+  gap: 6px;
+  padding: 8px 0 12px;
+}
+
+.ios-stat-pill {
+  font-size: 13px;
   font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.04);
+  color: var(--ios-secondary-label);
+}
+
+.ios-stat-pill strong {
+  font-weight: 700;
+  margin-left: 3px;
+}
+
+.ios-stat-pill.pending { background: rgba(255,149,0,0.12); color: #C93400; }
+.ios-stat-pill.resolved { background: rgba(52,199,89,0.12); color: #1C7C3A; }
+
+/* ── Segmented Control ── */
+.ios-segment {
+  display: flex;
+  margin: 8px 16px 4px;
+  background: rgba(118,118,128,0.12);
+  border-radius: 9px;
+  padding: 2px;
+  max-width: 360px;
+}
+
+.ios-segment-btn {
+  flex: 1;
+  padding: 5px 0;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  background: transparent;
+  color: var(--ios-gray);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-segment-btn.active {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* ── 列表 (iOS Grouped 风格) ── */
+.ios-list-section {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 8px 16px;
+}
+
+.ios-list-section-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ios-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px 0 6px 4px;
+}
+
+.ios-list {
+  background: var(--ios-card-bg);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.ios-list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  min-height: 52px;
+  cursor: default;
+  transition: background 0.15s;
+  border-bottom: 0.5px solid rgba(60,60,67,0.08);
+}
+
+.ios-list-item:last-child {
+  border-bottom: none;
+}
+
+.ios-list-item:active {
+  background: rgba(60,60,67,0.04);
+}
+
+.ios-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-right: 12px;
   flex-shrink: 0;
 }
-.mobile-app .badge.pending { background: #fef3cd; color: #92400e; }
-.mobile-app .badge.resolved { background: #d1fae5; color: #065f46; }
 
-/* ========================================
-   后台 — 桌面端风格 (admin-app)
-   ======================================== */
-.admin-app {
-  max-width: 900px;
-  margin: 0 auto;
-  min-height: 100vh;
-  background: #f4f5f7;
-  color: #1a1a2e;
-  padding: 0 24px 40px;
+.ios-item-icon.pending {
+  background: rgba(255,149,0,0.15);
 }
-.admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0 20px;
-  border-bottom: 1px solid #e5e7eb;
-  margin-bottom: 20px;
-}
-.admin-header h1 {
-  font-size: 22px;
-  font-weight: 700;
-}
-.admin-actions .btn {
-  padding: 10px 22px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  background: #4f8cff;
-  color: white;
-  transition: opacity 0.2s;
-}
-.admin-actions .btn:hover { opacity: 0.85; }
 
-/* 后台统计 */
-.admin-stats {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
+.ios-item-icon.resolved {
+  background: rgba(52,199,89,0.15);
 }
-.admin-stats .stat-card {
+
+.ios-item-body {
   flex: 1;
-  background: white;
-  padding: 16px;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  font-size: 14px;
-  text-align: center;
+  min-width: 0;
 }
-.admin-stats .stat-card strong {
-  font-size: 24px;
-  display: block;
-  margin-top: 4px;
-  color: #1a1a2e;
-}
-.admin-stats .orange strong { color: #e67e22; }
-.admin-stats .green strong { color: #27ae60; }
 
-/* 后台弹窗 (居中) */
-.admin-app .overlay {
+.ios-item-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ios-item-subtitle {
+  font-size: 13px;
+  color: var(--ios-tertiary-label);
+  margin-top: 2px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ios-item-trailing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.ios-item-time {
+  font-size: 12px;
+  color: var(--ios-quaternary-label);
+}
+
+.ios-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+}
+
+.ios-badge.pending {
+  background: rgba(255,149,0,0.15);
+  color: #C93400;
+}
+
+.ios-badge.resolved {
+  background: rgba(52,199,89,0.15);
+  color: #1C7C3A;
+}
+
+/* ── 空状态 ── */
+.ios-empty {
+  text-align: center;
+  padding: 80px 32px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.ios-empty-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.ios-empty-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.ios-empty-desc {
+  font-size: 15px;
+  color: var(--ios-tertiary-label);
+  line-height: 1.4;
+}
+
+/* ── 加载状态 ── */
+.ios-loading {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.ios-loading-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ios-blue);
+  animation: ios-pulse 1.2s ease-in-out infinite;
+}
+
+.ios-loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.ios-loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes ios-pulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+/* ── FAB ── */
+.ios-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--ios-blue);
+  color: white;
+  border: none;
+  font-size: 24px;
+  font-weight: 300;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,122,255,0.35), 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.ios-fab:active {
+  transform: scale(0.92);
+  box-shadow: 0 2px 8px rgba(0,122,255,0.25);
+}
+
+/* ── Bottom Sheet (iOS 风格) ── */
+.ios-sheet-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.4);
+  z-index: 200;
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
-.admin-app .form {
-  background: white;
-  padding: 28px;
-  border-radius: 14px;
-  width: 460px;
-  max-width: 90vw;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.admin-app .form h2 { font-size: 18px; }
-.admin-app .form input,
-.admin-app .form textarea {
-  padding: 10px 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  font-family: inherit;
-  transition: border 0.2s;
-}
-.admin-app .form input:focus,
-.admin-app .form textarea:focus { border-color: #4f8cff; }
-.admin-app .form-actions { display: flex; gap: 10px; }
-.admin-app .form-actions .btn {
-  padding: 10px 22px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  background: #4f8cff;
-  color: white;
-}
-.admin-app .form-actions .btn-cancel {
-  background: #e5e7eb;
-  color: #333;
+  align-items: flex-end;
+  animation: ios-fadeIn 0.25s ease-out;
 }
 
-/* 后台列表 */
-.admin-app .list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+@keyframes ios-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-.admin-app .empty, .admin-app .loading {
+
+.ios-sheet {
+  background: var(--ios-card-bg);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px 20px 0 0;
+  padding: 6px 20px 32px;
+  animation: ios-sheetUp 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes ios-sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.ios-sheet-grabber {
+  width: 36px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(60,60,67,0.15);
+  margin: 8px auto 16px;
+}
+
+.ios-sheet-title {
+  font-size: 18px;
+  font-weight: 600;
   text-align: center;
-  color: #aaa;
-  padding: 40px;
-  font-size: 15px;
+  margin-bottom: 20px;
+  color: #000;
 }
-.admin-app .card {
-  background: white;
-  padding: 18px 22px;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  transition: box-shadow 0.2s;
+
+.ios-field-group {
+  margin-bottom: 16px;
 }
-.admin-app .card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-.admin-app .card-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.admin-app .card-head h3 { font-size: 16px; }
-.admin-app .card-content {
-  color: #555;
-  font-size: 14px;
-  line-height: 1.6;
-}
-.admin-app .card-meta {
-  display: flex;
-  gap: 16px;
-  margin-top: 8px;
-  font-size: 12px;
-  color: #999;
-}
-.admin-app .badge {
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 500;
-  flex-shrink: 0;
-}
-.admin-app .badge.pending { background: #fef3cd; color: #856404; }
-.admin-app .badge.resolved { background: #d4edda; color: #155724; }
-.admin-app .btn-sm {
-  margin-top: 10px;
-  padding: 6px 14px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+
+.ios-field-label {
   font-size: 13px;
+  font-weight: 600;
+  color: var(--ios-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  padding-left: 4px;
+}
+
+.ios-field {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  background: rgba(118,118,128,0.08);
+  color: #000;
+  outline: none;
+  transition: background 0.2s;
+  -webkit-appearance: none;
+}
+
+.ios-field:focus {
+  background: rgba(118,118,128,0.12);
+}
+
+.ios-field::placeholder {
+  color: var(--ios-quaternary-label);
+}
+
+.ios-field-textarea {
+  resize: none;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+.ios-sheet-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ios-btn {
+  flex: 1;
+  padding: 15px 0;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
-  background: #f9f9f9;
-  color: #555;
   transition: all 0.2s;
 }
-.admin-app .btn-sm:hover {
-  background: #eef2ff;
-  border-color: #4f8cff;
-  color: #4f8cff;
+
+.ios-btn-primary {
+  background: var(--ios-blue);
+  color: #fff;
+}
+
+.ios-btn-primary:active {
+  opacity: 0.7;
+}
+
+.ios-btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ios-btn-secondary {
+  background: rgba(118,118,128,0.08);
+  color: var(--ios-blue);
+}
+
+.ios-btn-secondary:active {
+  background: rgba(118,118,128,0.16);
+}
+
+/* ── Toast 反馈 ── */
+.ios-toast {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 999;
+  animation: ios-toastIn 0.3s ease-out;
+  pointer-events: none;
+  max-width: 85%;
+  text-align: center;
+}
+
+@keyframes ios-toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }

@@ -479,3 +479,426 @@ body {
   from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
+
+/* ========================================
+   macOS 风格 — B端企业后台
+   ======================================== */
+
+/* ── 后台容器 ── */
+.mac-app {
+  min-height: 100vh;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
+}
+
+/* ── 工具栏 (macOS 风格) ── */
+.mac-toolbar {
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+}
+
+.mac-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mac-toolbar-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mac-toolbar-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.1px;
+}
+
+.mac-toolbar-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(0,0,0,0.1);
+}
+
+.mac-toolbar-subtitle {
+  font-size: 12px;
+  color: #86868b;
+}
+
+.mac-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── 按钮 ── */
+.mac-btn {
+  padding: 7px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mac-btn-primary {
+  background: #007AFF;
+  color: #fff;
+}
+
+.mac-btn-primary:hover {
+  background: #0066d6;
+}
+
+.mac-btn-primary:active {
+  background: #0055b3;
+}
+
+.mac-btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mac-btn-secondary {
+  background: rgba(0,0,0,0.06);
+  color: #1d1d1f;
+}
+
+.mac-btn-secondary:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.mac-btn-icon {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.mac-btn-sm {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.mac-btn-sm:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+/* ── 内容区 ── */
+.mac-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ── 统计卡片 (macOS 健康 App 风格) ── */
+.mac-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.mac-stat-card {
+  flex: 1;
+  max-width: 200px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
+}
+
+.mac-stat-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.mac-stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #1d1d1f;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.mac-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #86868b;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.mac-stat-orange .mac-stat-value { color: #c93400; }
+.mac-stat-green .mac-stat-value { color: #248a3d; }
+
+/* ── 表格 (macOS Mail/Notes 风格) ── */
+.mac-table-wrap {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.mac-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.mac-table thead th {
+  text-align: left;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #86868b;
+  background: #fafafa;
+  border-bottom: 0.5px solid rgba(0,0,0,0.06);
+}
+
+.mac-table tbody td {
+  padding: 12px 14px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.04);
+  vertical-align: middle;
+}
+
+.mac-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mac-table tbody tr:hover {
+  background: rgba(0,122,255,0.03);
+}
+
+.mac-table-empty {
+  text-align: center;
+  color: #86868b;
+  padding: 40px 14px !important;
+  font-size: 13px;
+}
+
+.mac-cell-title {
+  font-weight: 500;
+  color: #1d1d1f;
+}
+
+.mac-cell-desc {
+  color: #86868b;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mac-cell-time {
+  font-size: 12px;
+  color: #86868b;
+}
+
+.mac-user-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(0,0,0,0.05);
+  color: #515154;
+}
+
+.mac-status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.mac-status.pending {
+  background: rgba(201,52,0,0.08);
+  color: #c93400;
+}
+
+.mac-status.resolved {
+  background: rgba(36,138,61,0.08);
+  color: #248a3d;
+}
+
+/* ── 加载状态 ── */
+.mac-loading {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.mac-loading-bar {
+  width: 200px;
+  height: 4px;
+  border-radius: 2px;
+  background: #e8e8ed;
+  overflow: hidden;
+  position: relative;
+}
+
+.mac-loading-bar::after {
+  content: '';
+  position: absolute;
+  left: -50%;
+  width: 40%;
+  height: 100%;
+  background: #007AFF;
+  border-radius: 2px;
+  animation: mac-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes mac-loading {
+  0% { left: -40%; width: 30%; }
+  50% { left: 30%; width: 50%; }
+  100% { left: 100%; width: 30%; }
+}
+
+/* ── macOS 弹窗 (磨砂玻璃效果) ── */
+.mac-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  animation: mac-fadeIn 0.2s ease-out;
+}
+
+@keyframes mac-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mac-modal {
+  background: #f5f5f7;
+  border-radius: 12px;
+  width: 480px;
+  max-width: calc(100vw - 40px);
+  box-shadow: 0 14px 48px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  animation: mac-modalIn 0.3s cubic-bezier(0.28, 0.64, 0.2, 1);
+}
+
+@keyframes mac-modalIn {
+  from { transform: scale(0.95) translateY(8px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.mac-modal-header {
+  background: #f0f0f3;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.06);
+  position: relative;
+}
+
+.mac-modal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mac-modal-dot-red { background: #ff5f57; }
+.mac-modal-dot-yellow { background: #febc2e; }
+.mac-modal-dot-green { background: #28c840; }
+
+.mac-modal-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-left: 12px;
+}
+
+.mac-modal-body {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── 表单字段 ── */
+.mac-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mac-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #515154;
+  letter-spacing: 0.2px;
+}
+
+.mac-field-input {
+  padding: 8px 12px;
+  border: 0.5px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #fff;
+  color: #1d1d1f;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.mac-field-input:focus {
+  border-color: #007AFF;
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.15);
+}
+
+.mac-field-input::placeholder {
+  color: #aeaeb2;
+}
+
+.mac-field-textarea {
+  resize: vertical;
+  min-height: 72px;
+  line-height: 1.5;
+}
+
+.mac-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 0.5px solid rgba(0,0,0,0.06);
+}

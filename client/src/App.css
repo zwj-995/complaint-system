@@ -902,3 +902,137 @@ body {
   padding-top: 16px;
   border-top: 0.5px solid rgba(0,0,0,0.06);
 }
+
+/* ── Toast 提示 ── */
+.mac-toast {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 300;
+  animation: mac-toastIn 0.25s ease-out;
+  pointer-events: none;
+}
+@keyframes mac-toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── 工具栏行 (搜索 + 筛选) ── */
+.mac-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* ── 搜索框 ── */
+.mac-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 360px;
+}
+.mac-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  pointer-events: none;
+}
+.mac-search-input {
+  width: 100%;
+  padding: 8px 32px 8px 34px;
+  border: 0.5px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  background: rgba(0,0,0,0.03);
+  color: #1d1d1f;
+  outline: none;
+  transition: all 0.2s;
+}
+.mac-search-input:focus {
+  border-color: #007AFF;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.12);
+}
+.mac-search-input::placeholder { color: #aeaeb2; }
+.mac-search-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: #aeaeb2;
+  padding: 4px;
+  line-height: 1;
+}
+.mac-search-clear:hover { color: #515154; }
+
+/* ── 状态筛选标签 ── */
+.mac-filter-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(0,0,0,0.04);
+  border-radius: 8px;
+  padding: 3px;
+}
+.mac-filter-tab {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  color: #86868b;
+  transition: all 0.2s;
+}
+.mac-filter-tab:hover { color: #1d1d1f; }
+.mac-filter-tab.active {
+  background: #fff;
+  color: #1d1d1f;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* ── 可排序表头 ── */
+.mac-th-sort {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.mac-th-sort:hover { color: #1d1d1f; }
+
+/* ── 交替行背景 ── */
+.mac-row-even {
+  background: rgba(0,0,0,0.015);
+}
+
+/* ── 图标按钮 ── */
+.mac-btn-icon-only {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.mac-btn-icon-only:hover { background: rgba(0,122,255,0.08); }
